@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Clima UPC
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        </link>
+        <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/assets/css/docs.min.css">
+        </link>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    </head>
+    <body>
+        <br/>
+            <form id="target" action="destination.html">
+              <input type="text" name="ciudad" id="ciudad" value="Lima">
+              <input type="submit" value="Clima">
+            </form>
+            <div id="clima"></div>
+            <script>
+            $( "#target" ).submit(function( event ) {
+              //alert( "Handler for .submit() called." );
+              event.preventDefault();
+                ciudad = $("#ciudad").val();
+                $.get("http://localhost:8080/api/v1/"+ciudad+"/966296636", function(data) {
+                  //alert("Load was performed.");
+                  console.log(data);
+                  //alert(data['status']);
+                  //alert(data.status);
+                  //alert(data.msg.temperatura);
+                  $("#clima").text("Temperatura " + data.msg.temperatura);
+                });
+            });
+            </script>
+        <br/>
+        <div class="fixed-bottom container">
+            <div class="row" style="min-height: 10px;">
+                <div class="col-md-8">
+                    
+                </div>
+                <div class="col-md-4 text-center text-white bg-info rounded-top">
+                    © Copyright 2020 | UPC |
+                    <b>
+                        Mario Inga
+                    </b>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
